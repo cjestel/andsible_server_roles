@@ -1,0 +1,14 @@
+---
+- name: Add mariadb repo key
+  ansible.builtin.apt_key:
+    url: https://mariadb.org/mariadb_release_signing_key.asc
+
+- name: set up mariadb repo file
+  ansible.builtin.copy:
+    content: 'deb https://mirrors.gigenet.com/mariadb/repo/10.10/ubuntu focal main'
+    dest: /etc/apt/sources.list.d/mariadb.list
+
+- name: Install Base Packages
+  ansible.builtin.package:
+    name: mariadb-server
+    state: present

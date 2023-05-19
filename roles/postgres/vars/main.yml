@@ -1,0 +1,8 @@
+---
+postgres_server_packages:
+  - dirmngr
+  - ca-certificates
+  - gnupg
+  - gnupg2
+  - postgresql-client-15
+  - postgresql-15

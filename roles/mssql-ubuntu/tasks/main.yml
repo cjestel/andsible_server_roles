@@ -1,0 +1,15 @@
+---
+
+- name: Add mssql repo key
+  ansible.builtin.apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: set up mssql repo file
+  ansible.builtin.copy:
+    content: 'deb [arch=armhf,arm64,amd64] https://packages.microsoft.com/ubuntu/20.04/mssql-server-2022 focal main'
+    dest: /etc/apt/sources.list.d/mssql.list
+
+- name: Install mssql Packages
+  ansible.builtin.package:
+    name: [ 'mssql-server', 'expect' ]
+    state: present

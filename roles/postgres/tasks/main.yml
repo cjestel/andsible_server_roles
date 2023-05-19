@@ -1,0 +1,23 @@
+---
+- name: Include all .yaml files in vars directory
+  ansible.builtin.include_vars:
+    dir: vars
+    extensions:
+      - 'yaml'
+      - 'yml'
+
+- name: Add an Apt signing key to postgres key file
+  ansible.builtin.apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc 
+    keyring: /usr/share/keyrings/postgresql.gpg
+
+- name: set up postgres repo file
+  ansible.builtin.copy:
+    content: 'deb [arch=amd64,arm64,ppc64el signed-by=/usr/share/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main'
+    dest: /etc/apt/sources.list.d/postgresql.list
+
+- name: Install Postgres Server Packages
+  ansible.builtin.package:
+    name: "{{postgres_server_packages}}"
+    state: present
+ 

@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+    - roles/globalconfigs
+    #- roles/mssql-ubuntu
+    #- roles/mariadb
+    #- roles/nginx
+    - roles/postgres
+    #- roles/dbdeployer
+    - roles/terraform_client

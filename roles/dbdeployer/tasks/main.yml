@@ -1,0 +1,18 @@
+---
+- name: Git checkout
+  ansible.builtin.git:
+    repo: 'https://github.com/cjestel/dbdeployer.git'
+    dest: /srv/dbdeployer
+
+- name: Run dbdeployer install if /etc/dbdeployer/dbdeployer_version does not exist
+  ansible.builtin.command: /srv/dbdeployer/dbdeployer_install.sh
+  become: yes
+  args:
+    creates: /etc/dbdeployer/dbdeployer_release
+
+- name: Create the database specified in vars
+  become: true
+  become_user: postgres
+  postgresql_db: name=deployments
+    template='template0'
+    state=present

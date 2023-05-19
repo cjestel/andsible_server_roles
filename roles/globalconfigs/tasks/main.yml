@@ -1,0 +1,18 @@
+---
+- name: Include all .yaml files in vars directory
+  ansible.builtin.include_vars:
+    dir: vars
+    extensions:
+      - 'yaml'
+      - 'yml'
+
+- name: set up ansible 2.10 repo file
+  ansible.builtin.copy:
+    content: 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main'
+    dest: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
+
+- name: Install Base Packages
+  ansible.builtin.package:
+    name: "{{base_packages}}"
+    state: present
+

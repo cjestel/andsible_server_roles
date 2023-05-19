@@ -1,0 +1,24 @@
+---
+- name: Include all .yaml files in vars directory
+  ansible.builtin.include_vars:
+    dir: vars
+    extensions:
+      - 'yaml'
+      - 'yml'
+
+- name: Download and install terraform binary
+  ansible.builtin.unarchive:
+    src: https://releases.hashicorp.com/terraform/1.3.6/terraform_1.3.6_linux_386.zip
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: Download aws-cli
+  ansible.builtin.unarchive:
+    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: install aws-cli
+  ansible.builtin.shell: /root/aws/install >> /tmp/aws/install_output.txt
+  args:
+    creates: /root/aws/install_output.txt

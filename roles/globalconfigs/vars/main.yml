@@ -1,0 +1,11 @@
+---
+base_packages:
+  - ansible
+  - git
+  - mlocate
+  - software-properties-common
+  - tree
+  - unzip
+  - vim
+  - zip
+
