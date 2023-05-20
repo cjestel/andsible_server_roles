@@ -4,5 +4,5 @@
 - name: Set up ansible-pull to run every hour
   ansible.builtin.cron:
     name: "check dirs"
-    minute: "54"
+    minute: "0"
     job: "/usr/bin/ansible-pull --url=https://github.com/cjestel/ansible_server_roles.git dbtune.yaml >> /var/log/ansible-pull 2>&1"
