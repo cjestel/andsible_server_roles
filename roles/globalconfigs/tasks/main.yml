@@ -12,6 +12,7 @@
     dest: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
 
 - name: set up ansible repo pubkey
+  ansible.builtin.apt_key:
     keyserver: http://keyserver.ubuntu.com
     id: 0x93C4A3FD7BB9C367
 
