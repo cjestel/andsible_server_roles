@@ -10,6 +10,8 @@
   ansible.builtin.copy:
     content: 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main'
     dest: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
+
+- name: set up ansible repo pubkey
     keyserver: http://keyserver.ubuntu.com
     id: 0x93C4A3FD7BB9C367
 
