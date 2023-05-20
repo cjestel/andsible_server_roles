@@ -19,11 +19,10 @@
 - name: Update apt package cache
   become: true
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 86400 #One day
 
 - name: Install Postgres Server Packages
   ansible.builtin.package:
     name: "{{postgres_server_packages}}"
     state: present
-
