@@ -8,7 +8,7 @@
 
 - name: Add an Apt signing key to postgres key file
   ansible.builtin.apt_key:
-    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc 
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     keyring: /usr/share/keyrings/postgresql.gpg
 
 - name: set up postgres repo file
@@ -16,8 +16,14 @@
     content: 'deb [arch=amd64,arm64,ppc64el signed-by=/usr/share/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main'
     dest: /etc/apt/sources.list.d/postgresql.list
 
+- name: Update apt package cache
+  become: true
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
 - name: Install Postgres Server Packages
   ansible.builtin.package:
     name: "{{postgres_server_packages}}"
     state: present
- 
+
