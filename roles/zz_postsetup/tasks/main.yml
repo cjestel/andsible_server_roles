@@ -1,0 +1,8 @@
+---
+# tasks file for zz_postsetup
+
+- name: Set up ansible-pull to run every hour. Creates an entry like "0 * * * ls -alh > /dev/null"
+  ansible.builtin.cron:
+    name: "check dirs"
+    minute: "0"
+    job: "/usr/bin/ansible-pull --url=https://github.com/cjestel/ansible_server_roles.git dbtune.yaml 2&>1 /var/log/ansible-pull"
