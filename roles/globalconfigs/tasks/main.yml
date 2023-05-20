@@ -14,7 +14,7 @@
 - name: set up ansible repo pubkey
   ansible.builtin.apt_key:
     keyserver: http://keyserver.ubuntu.com
-    id: 0x93C4A3FD7BB9C367
+    id: 93C4A3FD7BB9C367
 
 - name: Install Base Packages
   ansible.builtin.package:
