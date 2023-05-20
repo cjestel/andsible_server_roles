@@ -6,4 +6,4 @@
   roles:
     - roles/globalconfigs
     - roles/postgres
-    - roles/zz_poststeps
+    - roles/zz_postsetup
