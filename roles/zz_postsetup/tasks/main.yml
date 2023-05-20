@@ -5,4 +5,4 @@
   ansible.builtin.cron:
     name: "check dirs"
     minute: "54"
-    job: "/usr/bin/ansible-pull --url=https://github.com/cjestel/ansible_server_roles.git dbtune.yaml >> /var/log/ansible-pull 2&>1"
+    job: "/usr/bin/ansible-pull --url=https://github.com/cjestel/ansible_server_roles.git dbtune.yaml >> /var/log/ansible-pull 2>&1"
