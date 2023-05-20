@@ -6,16 +6,6 @@
       - 'yaml'
       - 'yml'
 
-- name: set up ansible 2.10 repo file
-  ansible.builtin.copy:
-    content: 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main'
-    dest: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
-
-- name: set up ansible repo pubkey
-  ansible.builtin.apt_key:
-    keyserver: http://keyserver.ubuntu.com
-    id: 93C4A3FD7BB9C367
-
 - name: Install Base Packages
   ansible.builtin.package:
     name: "{{base_packages}}"
