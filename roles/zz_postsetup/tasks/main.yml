@@ -6,3 +6,21 @@
     name: "check dirs"
     minute: "0"
     job: "/usr/bin/ansible-pull --url=https://github.com/cjestel/ansible_server_roles.git dbtune.yaml >> /var/log/ansible-pull 2>&1"
+
+lp_logrotate_confd:
+  - path: ansible-pull
+    conf: |
+      /var/log/ansible-pull {
+             daily
+             rotate 30
+             compress
+             delaycompress
+             missingok
+             copytruncate
+      }
+
+- blockinfile:
+    path: "/etc/logrotate.d/{{ item.path }}"
+    block: "{{ item.conf }}"
+    create: true
+  loop: "{{ lp_logrotate_confd }}"
