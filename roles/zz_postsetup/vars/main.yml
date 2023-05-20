@@ -1,2 +1,13 @@
 ---
 # vars file for zz_postsetup
+ap_logrotate_confd:
+  - path: ansible-pull
+    conf: |
+      /var/log/ansible-pull {
+             daily
+             rotate 30
+             compress
+             delaycompress
+             missingok
+             copytruncate
+      }
