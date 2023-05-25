@@ -25,3 +25,9 @@
   ansible.builtin.package:
     name: "{{postgres_server_packages}}"
     state: present
+
+- name: Ensure config file has appropriate preloaded libraries
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^shared_preload_libraries'
+    line: shared_preload_libraries = 'pg_stat_statments'
